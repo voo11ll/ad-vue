@@ -1,7 +1,7 @@
 <template> 
     <v-container fluid fill-height>
         <v-layout align-center justify-center> 
-            <v-flex xs12 sm8 md8>
+            <v-flex xs12 sm8 md4>
             <v-card class="elevetion-12">
                 <v-toolbar dark color="#800080">
 <v-toolbar-title>Registration</v-toolbar-title>
@@ -78,4 +78,8 @@ export default {
   }
 } 
 </script>
+
+
+
+
 
