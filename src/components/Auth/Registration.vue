@@ -36,7 +36,7 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="#800080" @click="onSubmit" :disabled="!valid">Create Account</v-btn>
+                    <v-btn color="purple" @click="onSubmit" :disabled="!valid">Create Account</v-btn>
                 </v-card-actions>	
             </v-card>
             </v-flex>
