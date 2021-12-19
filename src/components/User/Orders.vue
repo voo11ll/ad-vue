@@ -17,7 +17,7 @@
                           <v-list-item-subtitle>{{ order.phone }}</v-list-item-subtitle>
                         </v-list-item-content>
                  <v-list-item-action>
-                    <v-btn class="purple" :to="'/ad/' + order.adId">Open</v-btn>
+                    <v-btn dark class="purple" :to="'/ad/' + order.adId">Open</v-btn>
                     </v-list-item-action>
                    </v-list-item>
              </v-list>

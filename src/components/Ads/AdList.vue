@@ -16,7 +16,7 @@
                           </v-card-text>
                             <v-card-actions>
                               <v-spacer></v-spacer>
-                              <v-btn color="purple" :to="'/ad/' + ad.id">
+                              <v-btn dark color="purple" :to="'/ad/' + ad.id">
                                  Open
                               </v-btn>
                            </v-card-actions>	

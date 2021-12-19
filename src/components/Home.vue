@@ -38,7 +38,7 @@
                     <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn text:to="'/ad/' + ad.id">Open</v-btn>
-                    <v-btn raised color="#973e95">
+                    <v-btn raised dark color="#973e95">
                         Buy
                     </v-btn>
                     </v-card-actions>				

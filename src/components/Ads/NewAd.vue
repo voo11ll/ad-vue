@@ -72,9 +72,10 @@ export default {
           const ad = {
          title: this.title,
          desc: this.description,
-         promo: this.promo
+         promo: this.promo,
+         src: "https://i.pinimg.com/originals/2c/0a/b1/2c0ab12aa640e6de5e18315570bc34f5.jpg"
         }
-        console.log(ad)
+        this.$store.dispatch("createAd", ad)
     }
    }
   }

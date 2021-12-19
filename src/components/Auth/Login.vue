@@ -28,7 +28,7 @@ v-model="password"
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="purple" @click="onSubmit" :disabled="!valid">Login</v-btn>
+                    <v-btn dark color="purple" @click="onSubmit" :disabled="!valid">Login</v-btn>
                 </v-card-actions>	
             </v-card>
             </v-flex>
