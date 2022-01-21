@@ -28,7 +28,12 @@ v-model="password"
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn dark color="purple" @click="onSubmit" :disabled="!valid">Login</v-btn>
+                    <v-btn dark color="purple" 
+                     @click="onSubmit" 
+                     :loading="loading"
+                     :disabled="!valid || loading">
+                    Login
+                    </v-btn>
                 </v-card-actions>	
             </v-card>
             </v-flex>
@@ -52,6 +57,11 @@ export default {
             ]
         } 	
     },
+    computed:{
+        loading(){
+            return this.$store.getters.loading
+        }
+    },
     methods: {
     onSubmit(){
         if (this.$refs.form.validate()){
@@ -59,7 +69,13 @@ export default {
                 email: this.email,
                 password: this.password
             }
-            console.log(user)
+            this.$store.dispatch('loginUser',user)
+            .then(()=>{
+                this.$router.push("/")
+            })
+            .catch((err)=>{
+                console.log(err.message)
+            })
         }
     }
 }

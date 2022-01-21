@@ -39,7 +39,7 @@
                     <v-btn dark color="purple" 
                      @click="onSubmit"
                      :loading="loading" 
-                     :disabled="!valid">
+                     :disabled="!valid||loading">
                      Create Account
                     </v-btn>
                 </v-card-actions>	
