@@ -29,7 +29,7 @@ export default {
       commit('setLoading', true)
       try{
         const response=await
-      fb.auth().signlnWithEmailAndPassword(email,password)
+      fb.auth().signInWithEmailAndPassword(email,password)
         commit('setUser', new User(response.user.uid))
         commit('setLoading', false)
       } catch (error) {
