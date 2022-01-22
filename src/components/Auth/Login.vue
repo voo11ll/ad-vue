@@ -77,8 +77,13 @@ export default {
                 console.log(err.message)
             })
         }
+     }
+    },
+    created(){
+        if (this.$route.query['loginError']){
+            this.$store.dispatch('setError','Please login to acces this page')
+        }
     }
-}
 } 
 </script>
 

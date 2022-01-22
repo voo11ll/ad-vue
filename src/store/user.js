@@ -38,10 +38,17 @@ export default {
          throw error
         }
     },
+    logoutUser({commit}){
+      fb.auth().signOut()
+      commit('setUser', null)
+    }
   },
   getters: {
     user(state) {
       return state.user
+    },
+    isUserLoggedIn(state){
+      return state.user!==null
     }
   }
 }

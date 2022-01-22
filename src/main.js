@@ -5,6 +5,7 @@ import vuetify from './plugins/vuetify'
 import router from './router/index'
 import store from './store'
 import fb from 'firebase'
+import user from './store/user'
 
 Vue.use(Router)
 Vue.config.productionTip = false
@@ -27,5 +28,10 @@ new Vue({
     // Initialize Firebase
     fb.initializeApp(firebaseConfig);
     fb.analytics();
+    fb.auth().onAuthStateChanged(user => {
+      if(user){
+      this.$store.dispatch('autoLoginUser', user)
+      }
+    })
   }
 }).$mount('#app')
