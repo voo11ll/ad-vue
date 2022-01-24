@@ -74,27 +74,37 @@ export default{
         async createAd ({commit, getters}, payload) {
             commit('clearError')
             commit('setLoading', true)
-      
+            const image = payload.image
             try {
               const newAd = new Ad(
                   payload.title,
                   payload.desc,
                   getters.user.id,
-                  payload.src,
+                  "", // При создании объявления отправляем пустая строку вместо адреса картинки
                   payload.promo,
                   payload.id
               )
               const fbValue = await fb.database().ref('ads').push(newAd)
-              commit('setLoading', false)
-              commit('createAd',{
-                  ...newAd,
-                  id: fbValue.key
-              })
-            } catch (error) {
-              commit('setError', error.message)
-              commit('setLoading', false)
-              throw error
-            }
+              const imageExt = image.name.slice(image.name.lastIndexOf("."))
+              
+              await fb.storage().ref().child('ads/${fbValue.key}.${imageExt}').put(image).then(
+                  snapshot => {
+                      snapshot.ref.getDownloadURL().then((downloadURL) =>{
+                          const src = downloadURL
+                          fb.database().ref("ads").child(fbValue.key).update({src})
+                          commit('setLoading', false)
+                          commit('createAd',{
+                              ...newAd,
+                              id: fbValue.key,
+                              src
+                            })
+                        })
+                    })
+                } catch (error) {
+                 commit('setError', error.message)
+                 commit('setLoading', false)
+                 throw error
+                }
         },
         async fetchAds({commit}) {
     		commit('clearError')

@@ -23,17 +23,21 @@
 
                 <v-layout  row> 
                   <v-flex xs12>
-                      <v-btn class="mt-3" color="warning">
+                      <v-btn class="mt-3" color="warning" @click="triggerUpload">
                           Upload
                          <v-icon right dark>mdi-cloud-upload</v-icon>
                       </v-btn>
-
+                      <input ref="fileInput"
+                      type = "file"
+                      style="display:none"
+                      accept="image/*"
+                      @change="onFileChange">
                     </v-flex>
                 </v-layout>
 
                 <v-layout  row> 
                  <v-flex xs12>
-                      <img src="https://i.pinimg.com/originals/bf/7c/9b/bf7c9b58e6e32ee5ee717bbf781371be.jpg" height="150" class="mt-3">
+                      <img :src="imageSrc" height="150" class="mt-3" v-if="imageSrc">
                  </v-flex>
                 </v-layout>
 
@@ -49,7 +53,7 @@
                       <v-btn color="success" 
                       @click="createAd"
                       :loading= "loading"
-                      :disabled= "!valid || loading"
+                      :disabled= "!valid || !image || loading"
                       >Create Ad</v-btn>
                   </v-flex>
                 </v-layout>
@@ -68,25 +72,39 @@ export default {
             valid: false,
             title: "",
             description: "",
-            promo: false
+            promo: false,
+            image: null,
+            imageSrs: ""
         } 	
     },
     methods: {
       createAd(){
-          if (this.$refs.form.validate()){
+          if (this.$refs.form.validate() && this.image){
           const ad = {
          title: this.title,
          desc: this.description,
          promo: this.promo,
-         src: "https://i.pinimg.com/originals/2c/0a/b1/2c0ab12aa640e6de5e18315570bc34f5.jpg"
-        }
-        this.$store.dispatch("createAd", ad)
+         image: this.image
+         }
+         this.$store.dispatch("createAd", ad)
            .then(()=>{
                this.$router.push("/list")
            })
            .catch(() =>{})
+         }
+       },
+       triggerUpload(){
+         this.$refs.fileInput.click()
+       },
+       onFileChange(event){
+           const file = event.target.files[0]
+           const reader = new FileReader()
+           reader.onload = e => {
+               this.imageSrc = reader.result
+           }
+           reader.readAsDataURL(file)
+           this.image = file
+        }
     }
-   }
-  }
 } 
 </script>
