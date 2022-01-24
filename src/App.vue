@@ -109,14 +109,14 @@ export default {
     }
     },
     methods: {
-    closeError () {
+     closeError () {
       this.$store.dispatch('clearError')
-     }
-   },
-   onLogout(){
+     },
+     onLogout(){
      this.$store.dispatch('logoutUser')
-     this.$store.push("/")
-   }
+     this.$router.push("/")
+     }
+    }
 }
 </script>
 

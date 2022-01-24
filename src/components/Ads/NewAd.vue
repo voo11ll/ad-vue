@@ -45,7 +45,12 @@
 
                 <v-layout  row> 
                   <v-flex xs12>
-                      <v-btn color="success" @click="createAd">Create Ad</v-btn>
+                      <v-spacer></v-spacer>
+                      <v-btn color="success" 
+                      @click="createAd"
+                      :loading= "loading"
+                      :disabled= "!valid || loading"
+                      >Create Ad</v-btn>
                   </v-flex>
                 </v-layout>
             </v-flex>
@@ -76,6 +81,10 @@ export default {
          src: "https://i.pinimg.com/originals/2c/0a/b1/2c0ab12aa640e6de5e18315570bc34f5.jpg"
         }
         this.$store.dispatch("createAd", ad)
+           .then(()=>{
+               this.$router.push("/list")
+           })
+           .catch(() =>{})
     }
    }
   }

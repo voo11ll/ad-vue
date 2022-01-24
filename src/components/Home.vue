@@ -1,5 +1,5 @@
 <template> 
-    <div>
+    <div v-if="!loading">
     <v-container fluid>
         <v-layout row> 
             <v-flex xs12>
@@ -37,7 +37,7 @@
                     </v-card-title>
                     <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn text:to="'/ad/' + ad.id">Open</v-btn>
+                    <v-btn text :to="'/ad/' + ad.id">Open</v-btn>
                     <v-btn raised dark color="#973e95">
                         Buy
                     </v-btn>
@@ -47,6 +47,20 @@
         </v-layout> 
     </v-container>
     </div>
+    <div v-else>
+       <v-container>
+	       <v-layout row>
+	           <v-flex xs12 sm2 offset-sm6 class="mt-5">
+		         <v-progress-circular 
+      	         :size="70"
+      	         :width="7"
+      	         color="#800080"
+      	         indeterminate>
+                   </v-progress-circular>
+	            </v-flex>
+	        </v-layout>
+	  </v-container>
+    </div>    
 </template>
 
 
@@ -59,7 +73,10 @@ export default {
 	},
 	ads() {
 		return this.$store.getters.ads
-	}
+	},
+    loading(){
+        return this.$store.getters.loading
+    }
 } 
 } 
 </script>
