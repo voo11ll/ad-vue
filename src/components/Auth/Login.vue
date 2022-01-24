@@ -28,7 +28,7 @@ v-model="password"
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn dark color="purple" 
+                    <v-btn dark color="#800080"
                      @click="onSubmit" 
                      :loading="loading"
                      :disabled="!valid || loading">

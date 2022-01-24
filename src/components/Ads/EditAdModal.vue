@@ -10,7 +10,7 @@
                <v-layout row>
                    <v-flex xs>
                           <v-card-title> 
-                           <h1 class="text--primery">Edit Ad</h1>
+                           <h1 class="text--purple">Edit Ad</h1>
                         </v-card-title>
                    </v-flex>
                </v-layout>
