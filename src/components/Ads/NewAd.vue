@@ -53,7 +53,7 @@
                       <v-btn color="success" 
                       @click="createAd"
                       :loading= "loading"
-                      :disabled= "!valid || !image || loading"
+                      :disabled:= "!valid || !image || loading"
                       >Create Ad</v-btn>
                   </v-flex>
                 </v-layout>
@@ -74,7 +74,7 @@ export default {
             description: "",
             promo: false,
             image: null,
-            imageSrs: ""
+            imageSrc: ""
         } 	
     },
     methods: {
